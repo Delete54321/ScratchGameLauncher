@@ -21,6 +21,11 @@ function generateLinks() {
         
         link.appendChild(thumbnail)
 
+        const gameName = document.createElement("span");
+        gameName.innerText = fileName.name
+        
+        link.appendChild(gameName)
+
         // Append the link to the container
         container.appendChild(link);
 
