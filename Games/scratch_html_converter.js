@@ -8,10 +8,10 @@ const {
 } = require('glob')
 const fs = require('fs');
 const path = require('path');
-
+const config = require('./config.json');
 
 const run = async () => {
-  const projectPath=globSync('D:/New Games/*.sb3')[0].toString();
+  const projectPath=globSync(config.input_path+"*.sb3")[0].toString();
   console.log(projectPath);
   console.log(path.basename(projectPath))
   const projectData = fs.readFileSync(projectPath);
@@ -24,7 +24,7 @@ const run = async () => {
   packager.project = loadedProject;
 
   const result = await packager.package();
-  fs.writeFileSync(path.join("D:/New Games/", path.basename(projectPath)+'.html'), result.data); 
+  fs.writeFileSync(path.join(config.output_path, path.basename(projectPath,".sb3")+'.html'), result.data); 
 }; 
 
 run()
