@@ -3,14 +3,14 @@ import os
 import shutil
 import json
 
-output=subprocess.check_output(['node','.\Games\scratch_html_converter.js'])
+output=subprocess.check_output(['node','.\\Games\\scratch_html_converter.js'])
 
 """game_location=output.splitlines()[0].decode('UTF-8')
 game_name=output.splitlines()[1].decode('UTF-8')"""
 
 
 #gets location of games and places the path in the games_dir variable
-with open('.\Games\config.json','r') as f:
+with open('.\\Games\\config.json','r') as f:
     paths = json.load(f)
 games_dir=paths.get('output_path','')
 
@@ -31,11 +31,11 @@ for file in os.listdir(games_dir):
 print(old_game_thumbnail)
 #print(game_name+game_thumbnail[game_thumbnail.index('.'):])
 
-new_thumbnail=game_name[:file.index('.')] + old_game_thumbnail[old_game_thumbnail.index('.'):]
+new_thumbnail=game_name[:file.index('.')] + old_game_thumbnail[old_game_thumbnail.index('.')+1:]
 
 os.rename(games_dir + old_game_thumbnail , games_dir + new_thumbnail)
-shutil.move(games_dir+new_thumbnail,".\Games\GameThumbnails\\")
-shutil.move(games_dir+game_name,".\Games\GameFiles\\")
+shutil.move(games_dir+new_thumbnail,".\\Games\\GameThumbnails\\")
+shutil.move(games_dir+game_name,".\\Games\\GameFiles\\")
 
 with open("games.js",'r') as f:
     gamelist=f.read()
@@ -52,3 +52,9 @@ gamelist=gamelist.replace("]",game_to_be_added)
 
 with open("games.js",'w') as f:
     f.write(gamelist)
+f.close()
+gamebasename=game_name[:game_name.index('.')]
+if os.path.exists(games_dir+gamebasename+".sb3"):
+  os.remove(games_dir+gamebasename+".sb3")
+else:
+  print("The file does not exist") 
