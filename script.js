@@ -42,16 +42,18 @@ function setupNavigation() {
             // Remove current selection
             elements[currentIndex].classList.remove('selected');
 
-            if (event.key === 'ArrowRight') {
+            if (event.key === 'ArrowRight' || event.key==='d') {
                 currentIndex = (currentIndex + 1) % elements.length;
-            } else if ( event.key === 'ArrowLeft') {
+            } else if ( event.key === 'ArrowLeft' || event.key==='a') {
                 currentIndex = (currentIndex - 1 + elements.length) % elements.length;
-            }else if (event.key==='ArrowDown'){
-                currentIndex=(currentIndex+5)% elements.length;
-
-            }else if (event.key === 'ArrowUp'){
-                currentIndex=(currentIndex-5+ elements.length)% elements.length;
-
+            }else if (event.key==='ArrowDown' || event.key==='s'){
+                if (currentIndex<elements.length-5){
+                    currentIndex=(currentIndex+5)% elements.length;
+                }
+            }else if (event.key === 'ArrowUp' || event.key==='w'){
+                if (currentIndex>=5){
+                    currentIndex=(currentIndex-5+ elements.length)% elements.length;
+                }
             }
             
             else if (event.key === 'Enter') {
