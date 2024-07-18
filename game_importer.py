@@ -3,14 +3,14 @@ import os
 import shutil
 import json
 
-output=subprocess.check_output(['node','.\\Games\\scratch_html_converter.js'])
+output=subprocess.check_output(['node','./Games/scratch_html_converter.js'])
 
 """game_location=output.splitlines()[0].decode('UTF-8')
 game_name=output.splitlines()[1].decode('UTF-8')"""
 
 
 #gets location of games and places the path in the games_dir variable
-with open('.\\Games\\config.json','r') as f:
+with open('./Games/config.json','r') as f:
     paths = json.load(f)
 games_dir=paths.get('output_path','')
 
@@ -34,8 +34,8 @@ print(old_game_thumbnail)
 new_thumbnail=game_name[:file.index('.')] + old_game_thumbnail[old_game_thumbnail.index('.')+1:]
 
 os.rename(games_dir + old_game_thumbnail , games_dir + new_thumbnail)
-shutil.move(games_dir+new_thumbnail,".\\Games\\GameThumbnails\\")
-shutil.move(games_dir+game_name,".\\Games\\GameFiles\\")
+shutil.move(games_dir+new_thumbnail,"./Games/GameThumbnails/")
+shutil.move(games_dir+game_name,"./Games/GameFiles/")
 
 with open("games.js",'r') as f:
     gamelist=f.read()
