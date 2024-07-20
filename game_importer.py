@@ -13,7 +13,7 @@ game_name=output.splitlines()[1].decode('UTF-8')"""
 with open('./Games/config.json','r') as f:
     paths = json.load(f)
 games_dir=paths.get('output_path','')
-
+f.close()
 game_name=''
 #gets first file that ends in '.html' in games director
 for file in os.listdir(games_dir):
@@ -31,7 +31,7 @@ for file in os.listdir(games_dir):
 print(old_game_thumbnail)
 #print(game_name+game_thumbnail[game_thumbnail.index('.'):])
 
-new_thumbnail=game_name[:file.index('.')] + old_game_thumbnail[old_game_thumbnail.index('.')+1:]
+new_thumbnail=game_name[:game_name.index('.')] + old_game_thumbnail[old_game_thumbnail.index('.'):]
 
 os.rename(games_dir + old_game_thumbnail , games_dir + new_thumbnail)
 shutil.move(games_dir+new_thumbnail,"./Games/GameThumbnails/")
@@ -42,7 +42,7 @@ with open("games.js",'r') as f:
 
 game_to_be_added=""
 game_to_be_added+='        {\n'
-game_to_be_added+='            "name": "'+game_name[:file.index('.')]+'",\n'
+game_to_be_added+='            "name": "'+game_name[:game_name.index('.')]+'",\n'
 game_to_be_added+='            "path": "Games/GameFiles/'+game_name+'",\n'
 game_to_be_added+='	        "thumbnailpath":"Games/GameThumbnails/'+new_thumbnail+'",\n'
 game_to_be_added+='        },\n'

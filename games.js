@@ -6,9 +6,9 @@ const fileNames = {
             "thumbnailpath":"Games/GameThumbnails/Tron Grid.svg"
         },
         {
-            "name": "Snake",
-            "path": "Games/GameFiles/snake with stamps.html",
-	        "thumbnailpath":"Games/GameThumbnails/snake.svg"
+            "name": "snake",
+            "path": "Games/GameFiles/snake.html",
+	        "thumbnailpath":"Games/GameThumbnails/snake.png",
         },
 ]
 };
